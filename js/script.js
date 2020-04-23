@@ -315,202 +315,22 @@ function changeLang(lang,letter)
 			if (letter == mistakes_ver_2[i]) return true;
 	}
 }
-/*
-function changeLang(lang,letter)
-{
-	if (lang == 'ver_1') { s = 0; f = 8;		}
-	if (lang == 'ver_2') { s = _lower.length - 6; f = _lower.length;}
-
-	for ( i = s ; i < f ; i++) 
-	{
-		if (letter ==_lower[i][1]) return true;
-	}
-
-	if (lang == 'ver_1') { s = 0; f = 6;		}
-	if (lang == 'ver_2') { s = _upper.length - 6; f = _upper.length;}
-
-	for ( i = s ; i < f ; i++) 
-	{
-		if (letter ==_upper[i][1]) return true;
-	}
-}
-*/
-/*
-			letter = whichLetter(lecture[symb_num]);
-			if (letter == ' '){ letter = '`';}
-
-			if (letter != '') 	output += letter;
-			else 								changeLanguage = true;		
-
-			if (changeLanguage)			
-			{
-				printValue(ctx,output,n_str,str_height,font_size,'ver_1',moveTo,X,Y);
-
-				// С какого места начинать выводить
-				ww2.innerHTML = output; // 
-				$width = $('.ww').width();
-				ww2.innerHTML='';
-				moveTo = moveTo + $width + 2;
-
-				// Ширина заменяемого символа 
-				output = whichLetter2(lecture[symb_num]);
-				ww2.style.fontFamily= 'ver_2';
-				ww2.innerHTML = output; // ц
-				$width = $('.ww').width();
-				ww2.innerHTML='';
-				printValue(ctx,output,n_str,str_height,font_size,"ver_2",moveTo,X,Y);
-				
-				ww2.style.fontFamily= 'ver_1';
-				moveTo = moveTo + $width;
-				output='';
-				
-			}
-*/			//changeLanguage = false;
-
-/*
-function whichLetter2(letter)
-{
-	flag = true;
-	if (letter == ' ') return ' ';
-	for(j=0; j<=35; j++) {
-				if (letter == _lower[j][0])
-				{ 
-					return _lower[j][1];
-					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
-					break;
-				}
-			}
-			if(flag)
-			{
-				for(j=0; j<=32; j++){
-					if (letter == _upper[j][0]) 
-					{	
-						return _upper[j][1];
-						flag = false;
-						break;
-				  }
-				}
-			}
-			if (flag) 
-			{	
-				if(letter == "+") return letter;
-				 //t = t +"<span class='ver2'>+</span>";
-			}		
-			return '';
-}
-function whichLetter(letter)
-{
-	flag = true;
-	if (letter == ' ') return ' ';
-
-	for(j=0; j<=35; j++) {
-				if (letter == _lower[j][0])
-				{ 
-					if(j>7) return _lower[j][1];
-					else return '';		//////////////
-					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
-					break;
-				}
-			}
-			if(flag)
-			{
-				for(j=0; j<=32; j++){
-					if (letter == _upper[j][0]) 
-					{	
-						if(j>2) return _upper[j][1];
-						else 		return ''; ////////////
-						flag = false;
-						break;
-				  }
-				}
-			}
-			if (flag) 
-			{	
-				if(letter == "+") return letter;
-				 //t = t +"<span class='ver2'>+</span>";
-			}		
-			return '';
-}
-
-function whichLetter(letter)
-{
-	flag = true;
-	if (letter == ' ') return ' ';
-
-			for(j=0; j<=35; j++) {
-				if (letter == _lower[j][0])
-				{ 
-					if(j>7) return 'ver_1';
-					
-					return 'ver_2';
-				}
-			}
-			if(flag)
-			{
-				for(j=0; j<=32; j++){
-					if (letter == _upper[j][0]) 
-					{	
-						if(j>2) return 'ver_1'
-				
-						return 'ver_2';
-				  }
-				}
-			}
-}
-
-/*			
-		let flag = true;
-			for(j=0; j<=34; j++) {
-				if (lecture[symb_num] == _lower[j][0])
-				{ 
-					if(j>1) output += _lower[j][1];
-					else changeLanguage = true;		//////////////
-					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
-					break;
-				}
-			}
-			if(flag)
-			{
-				for(j=0; j<=32; j++){
-					if (lecture[symb_num] == _upper[j][0]) 
-					{	
-						if(j>3) output += _upper[j][1];
-						else changeLanguage = true; ////////////
-						flag = false;
-						break;
-				  }
-				}
-			}
-			if (flag) 
-			{	
-				if(lecture[symb_num] == "+") 
-					changeLanguage = true; //t = t +"<span class='ver2'>+</span>";
-			}		
-*/
-
-
-/*	while((lecture[symb_num] != ' ') && (symb_num<=lecture.length))
-		{
-			symb_num++;
+	function getImage(canvas){
+		    var imageData = canvas.toDataURL();
+		    var image = new Image();
+		    image.src = imageData;
+		    return image;
 		}
-
-
-			let flag = true;
-			let num = 0;
-			while (flag)
-			{
-				if ($width<500) 
-				{
-					output += lecture[num];
-					ww2.innerHTML = output;
-					$width = $('.ww').width();
-					num++;
-				}else 	
-				flag = false;
-			}
-*/	
- //  imageObj2.onload = function() {
-   //   ctx.drawImage(imageObj2, 15, 85, 300, 300);
-    //  var img = c.toDataURL("image/png");
-   //   document.write('<img src="' + img + '" width="328" height="526"/>');
-  // }
+		 
+		function saveImage(image) {
+		    var link = document.createElement("a");
+		 
+		    link.setAttribute("href", image.src);
+		    link.setAttribute("download", "lecture_page"+String(page+1)+".png");
+		    link.click();
+		}
+		 
+		function saveCanvasAsImageFile(){
+		    var image = getImage(document.getElementById("myCanvas"));
+		    saveImage(image);
+		}	
