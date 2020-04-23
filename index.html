@@ -11,6 +11,27 @@
 	 <style>
 
 	 </style>
+	<script type="text/javascript">
+	function getImage(canvas){
+		    var imageData = canvas.toDataURL();
+		    var image = new Image();
+		    image.src = imageData;
+		    return image;
+		}
+		 
+		function saveImage(image) {
+		    var link = document.createElement("a");
+		 
+		    link.setAttribute("href", image.src);
+		    link.setAttribute("download", "canvasImage");
+		    link.click();
+		}
+		 
+		function saveCanvasAsImageFile(){
+		    var image = getImage(document.getElementById("myCanvas"));
+		    saveImage(image);
+		}	
+	</script>
 </head>
 <body style="background: url(images/bkg.jpg); background-size: 75%;">
 	<header>
@@ -42,7 +63,7 @@ ____________________
 </main>
 
 <footer>
-	<embed src="music/sound.mp3" hidden= "true" type="" id="music_volume" volume = "1">
+<!--	<embed src="music/sound.mp3" hidden= "true" type="" id="music_volume" volume = "1"> -->
 	<div class="footer-cta">Нашел БАГ? ОШИБКУ? Напиши ПО-<img style="margin-top:-30px; height:50px;" src="images/bratz3.gif">КИ</div> 
 	<a href="https://vk.com/id267162357" class="footer-button" style="background: url(images/wolf2.jpg); background-size: 100%;" target="_blank">Написать Волчаре</a>
 	<button onclick="saveCanvasAsImageFile()">
@@ -67,26 +88,5 @@ ____________________
 			
 			document.querySelector("textarea").placeholder = txt;
 		</script>
-	<script type="text/javascript">
-	function getImage(canvas){
-		    var imageData = canvas.toDataURL();
-		    var image = new Image();
-		    image.src = imageData;
-		    return image;
-		}
-		 
-		function saveImage(image) {
-		    var link = document.createElement("a");
-		 
-		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "canvasImage");
-		    link.click();
-		}
-		 
-		function saveCanvasAsImageFile(){
-		    var image = getImage(document.getElementById("myCanvas"));
-		    saveImage(image);
-		}	
-	</script>
 </body>
 </html>
