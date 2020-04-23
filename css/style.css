@@ -6,6 +6,9 @@ font-family:ver_1; src:url(../fonts/ver_1.ttf);
 font-family:ver_2; src:url(../fonts/ver_2.ttf);
 }
 body{
+max-height: 1271px; 
+height: 1045px; 
+width:1270px;
 }
 header{
   padding: 0px; padding-left: 50px; padding-top: 10px; height: 35px; text-align: left; background-color: black; color: white;
