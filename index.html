@@ -63,25 +63,6 @@ ____________________
 			document.querySelector("textarea").placeholder = txt;
 		</script>
 	<script type="text/javascript">
-	function getImage(canvas){
-		    var imageData = canvas.toDataURL();
-		    var image = new Image();
-		    image.src = imageData;
-		    return image;
-		}
-		 
-		function saveImage(image) {
-		    var link = document.createElement("a");
-		 
-		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "lecture_page.png");
-		    link.click();
-		}
-		 
-		function saveCanvasAsImageFile(){
-		    var image = getImage(document.getElementById("myCanvas"));
-		    saveImage(image);
-		}	
 	</script>
 </body>
 </html>
