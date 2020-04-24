@@ -72,7 +72,7 @@ function write_into_position()
 {
 	if (isPrev == true) 
 	{
-			while (page < output_info.length-1)
+			while (page < output_info.length-1 && output_info.length>2)
 			{
 				output_info = output_info.slice(0, -1);
 			}
