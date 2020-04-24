@@ -1,9 +1,3 @@
-output_info = [0];
-
-page = 0;
-isNext = true;
-isPrev = false;
-
 function settings()
 {
 var c=document.getElementById("myCanvas");
@@ -62,14 +56,14 @@ function load_background() {
 	var ctx=c.getContext("2d");
 	var imageObj1 = new Image();
 
-	if (page%2 == 0) imageObj1.src = "images/12.jpg"
+	if ((page+1)%2 == 0) imageObj1.src = "images/12.jpg"
 	else imageObj1.src = "images/21.jpg"
 
 			imageObj1.onload = function() 
 			{
 
 				ctx.drawImage(imageObj1, 0, 0, 0.8*0.78*document.body.clientHeight+8, 0.8*document.body.clientHeight+10);
-				alert('Сраница:'+String(page+1));
+				alert('Сраница:'+String(page));
 			}
 
 }
@@ -94,11 +88,23 @@ function prev()
 {
 	if (page>=1){ 
 		page--;
-
 		isPrev = true;
-
 		load_background();
-	}
+
+// текст выводит бытсрее, чем прогружается фон, для этого "придерживаем" функцию отрисовки текста
+		if ((page+1) % 2 == 0) 
+		{
+			X = template_XY[0][0];
+			Y = template_XY[0][1];
+		}
+		else
+		{
+			X = template_XY[1][0];
+			Y = template_XY[1][1];
+		}
+
+		setTimeout(textIn, 300, X, Y); 
+		}
 }
 
 function next()
@@ -106,6 +112,20 @@ function next()
 	page++;
 	isNext = true;
 	load_background();
+	
+	// текст выводит бытсрее, чем прогружается фон, для этого "придерживаем" функцию отрисовки текста
+	if ((page+1) % 2 == 0) 
+	{
+		X = template_XY[0][0];
+		Y = template_XY[0][1];
+	}
+	else
+	{
+		X = template_XY[1][0];
+		Y = template_XY[1][1];
+	}
+
+	setTimeout(textIn, 300, X, Y); 
 }
 
 function textIn(X,Y)
@@ -119,6 +139,12 @@ function textIn(X,Y)
 		let turn = document.getElementById("turn").value;
 		let str_height = document.getElementById("str_height").value;
 		let n_str = 0;
+		let font_num = document.getElementById("font_num").value;
+		selected_font[0] = font_array[font_num-1][0];
+		selected_font[1] = font_array[font_num-1][1];
+		selected_font[2] = font_num-1;
+		let font = selected_font[0];
+
 		document.getElementById("lecture_area").style.fontSize = String(Number(font_size))*440/width_of_str+'px';////2
 		//document.getElementById("lecture_area").style.width = String(Number(width_of_str)+20)+'px';///1.8
 		//document.getElementById("lecture_area").style.height =440 +'px';
@@ -135,9 +161,7 @@ function textIn(X,Y)
 				how_symb = parseInt(width_of_str / ($width/2));
 
 
-		let output;
-		//let changeLanguage = false;
-		let lang = 'ver_1';
+		let output = '';
 		let lecture = document.getElementById("lecture_area").value;
 		let lecture_base=[];
 
@@ -205,7 +229,7 @@ while(symb_num<lecture_base.length)
 					new_line = true;
 					break;
 				}
-			if(changeLang(lang,lecture_base[symb_num]))
+			if(changeLang(font,selected_font,lecture_base[symb_num],lecture[symb_num]))
 			{
 				if(output != ''){
 							ww2.innerHTML = output; // 
@@ -217,7 +241,7 @@ while(symb_num<lecture_base.length)
 							break;
 						}
 
-				printValue(ctx,output,n_str,str_height,font_size,lang,moveTo,X,Y);
+				printValue(ctx,output,n_str,str_height,font_size,font,moveTo,X,Y);
 
 				ww2.innerHTML = output; // 
 				$width = $('.ww').width();
@@ -226,8 +250,8 @@ while(symb_num<lecture_base.length)
 				}
 
 				output = '';
-				lang = rotate(lang);
-				ww2.style.fontFamily = lang ;
+				font = rotate(font,selected_font);
+				ww2.style.fontFamily = font ;
 			}
 
 			output += lecture_base[symb_num];
@@ -250,7 +274,7 @@ while(symb_num<lecture_base.length)
 				new_line = true;
 			}
 	// --------------	
-		printValue(ctx,output,n_str,str_height,font_size,lang,moveTo,X,Y);
+		printValue(ctx,output,n_str,str_height,font_size,font,moveTo,X,Y);
  
 	
 		if (new_line == true)
@@ -296,41 +320,234 @@ function checklength(output,symb_num,width,width_of_str,count,moveTo)
 	else return 0;
 }
 
-function rotate(lang)
+function rotate(font,selected_font)
 {
-	if (lang == 'ver_1') return 'ver_2';
-	if (lang == 'ver_2') return 'ver_1';
+	if (font == selected_font[0]) return selected_font[1];
+	if (font == selected_font[1]) return selected_font[0];
 }
 
-function changeLang(lang,letter)
+function changeLang(font,selected_font,letter,x)
 {
-	if (lang == 'ver_1')
-	{
-		for (i=0;i<mistakes_ver_1.length; i++)
-			if (letter == mistakes_ver_1[i]) return true;
+	if(font == 'ver_3' || font =='ver_4'){
+	// Обработка Больших и малых бю жэ хъ
+		if (letter == '[' || letter == ',' || letter == '\'' || letter == ';' || letter == '\"' || letter == '.') 
+		{
+			if (	 x == 'х' ||  		x == 'б' ||  		x	== 'ю' 		||  		x	== 'ж' 	|| 			x	== 'э' )
+			{
+				if (font == selected_font[1]) 	return true;
+				else 														return false;
+			}
+			else return true;
+		}
 	}
-	if (lang == 'ver_2')
+
+	if (font == selected_font[0])
 	{
-		for (i=0;i<mistakes_ver_2.length; i++)
-			if (letter == mistakes_ver_2[i]) return true;
+		for (i=0;i<mistakes_ver_1[selected_font[2]].length; i++)
+			if (letter == mistakes_ver_1[selected_font[2]][i]) return true;
+	}
+	if (font == selected_font[1])
+	{
+		for (i=0;i<mistakes_ver_2[selected_font[2]].length; i++)
+			if (letter == mistakes_ver_2[selected_font[2]][i]) return true;
 	}
 }
-	function getImage(canvas){
-		    var imageData = canvas.toDataURL();
-		    var image = new Image();
-		    image.src = imageData;
-		    return image;
+/*
+function changeLang(lang,letter)
+{
+	if (lang == 'ver_1') { s = 0; f = 8;		}
+	if (lang == 'ver_2') { s = _lower.length - 6; f = _lower.length;}
+
+	for ( i = s ; i < f ; i++) 
+	{
+		if (letter ==_lower[i][1]) return true;
+	}
+
+	if (lang == 'ver_1') { s = 0; f = 6;		}
+	if (lang == 'ver_2') { s = _upper.length - 6; f = _upper.length;}
+
+	for ( i = s ; i < f ; i++) 
+	{
+		if (letter ==_upper[i][1]) return true;
+	}
+}
+*/
+/*
+			letter = whichLetter(lecture[symb_num]);
+			if (letter == ' '){ letter = '`';}
+
+			if (letter != '') 	output += letter;
+			else 								changeLanguage = true;		
+
+			if (changeLanguage)			
+			{
+				printValue(ctx,output,n_str,str_height,font_size,'ver_1',moveTo,X,Y);
+
+				// С какого места начинать выводить
+				ww2.innerHTML = output; // 
+				$width = $('.ww').width();
+				ww2.innerHTML='';
+				moveTo = moveTo + $width + 2;
+
+				// Ширина заменяемого символа 
+				output = whichLetter2(lecture[symb_num]);
+				ww2.style.fontFamily= 'ver_2';
+				ww2.innerHTML = output; // ц
+				$width = $('.ww').width();
+				ww2.innerHTML='';
+				printValue(ctx,output,n_str,str_height,font_size,"ver_2",moveTo,X,Y);
+				
+				ww2.style.fontFamily= 'ver_1';
+				moveTo = moveTo + $width;
+				output='';
+				
+			}
+*/			//changeLanguage = false;
+
+/*
+function whichLetter2(letter)
+{
+	flag = true;
+	if (letter == ' ') return ' ';
+	for(j=0; j<=35; j++) {
+				if (letter == _lower[j][0])
+				{ 
+					return _lower[j][1];
+					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
+					break;
+				}
+			}
+			if(flag)
+			{
+				for(j=0; j<=32; j++){
+					if (letter == _upper[j][0]) 
+					{	
+						return _upper[j][1];
+						flag = false;
+						break;
+				  }
+				}
+			}
+			if (flag) 
+			{	
+				if(letter == "+") return letter;
+				 //t = t +"<span class='ver2'>+</span>";
+			}		
+			return '';
+}
+function whichLetter(letter)
+{
+	flag = true;
+	if (letter == ' ') return ' ';
+
+	for(j=0; j<=35; j++) {
+				if (letter == _lower[j][0])
+				{ 
+					if(j>7) return _lower[j][1];
+					else return '';		//////////////
+					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
+					break;
+				}
+			}
+			if(flag)
+			{
+				for(j=0; j<=32; j++){
+					if (letter == _upper[j][0]) 
+					{	
+						if(j>2) return _upper[j][1];
+						else 		return ''; ////////////
+						flag = false;
+						break;
+				  }
+				}
+			}
+			if (flag) 
+			{	
+				if(letter == "+") return letter;
+				 //t = t +"<span class='ver2'>+</span>";
+			}		
+			return '';
+}
+
+function whichLetter(letter)
+{
+	flag = true;
+	if (letter == ' ') return ' ';
+
+			for(j=0; j<=35; j++) {
+				if (letter == _lower[j][0])
+				{ 
+					if(j>7) return 'ver_1';
+					
+					return 'ver_2';
+				}
+			}
+			if(flag)
+			{
+				for(j=0; j<=32; j++){
+					if (letter == _upper[j][0]) 
+					{	
+						if(j>2) return 'ver_1'
+				
+						return 'ver_2';
+				  }
+				}
+			}
+}
+
+/*			
+		let flag = true;
+			for(j=0; j<=34; j++) {
+				if (lecture[symb_num] == _lower[j][0])
+				{ 
+					if(j>1) output += _lower[j][1];
+					else changeLanguage = true;		//////////////
+					flag = false;	/// Если в конструкцию не заходили,то проверка будет идти по Заглавным
+					break;
+				}
+			}
+			if(flag)
+			{
+				for(j=0; j<=32; j++){
+					if (lecture[symb_num] == _upper[j][0]) 
+					{	
+						if(j>3) output += _upper[j][1];
+						else changeLanguage = true; ////////////
+						flag = false;
+						break;
+				  }
+				}
+			}
+			if (flag) 
+			{	
+				if(lecture[symb_num] == "+") 
+					changeLanguage = true; //t = t +"<span class='ver2'>+</span>";
+			}		
+*/
+
+
+/*	while((lecture[symb_num] != ' ') && (symb_num<=lecture.length))
+		{
+			symb_num++;
 		}
-		 
-		function saveImage(image) {
-		    var link = document.createElement("a");
-		 
-		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "lecture_page"+String(page+1)+".png");
-		    link.click();
-		}
-		 
-		function saveCanvasAsImageFile(){
-		    var image = getImage(document.getElementById("myCanvas"));
-		    saveImage(image);
-		}	
+
+
+			let flag = true;
+			let num = 0;
+			while (flag)
+			{
+				if ($width<500) 
+				{
+					output += lecture[num];
+					ww2.innerHTML = output;
+					$width = $('.ww').width();
+					num++;
+				}else 	
+				flag = false;
+			}
+*/	
+ //  imageObj2.onload = function() {
+   //   ctx.drawImage(imageObj2, 15, 85, 300, 300);
+    //  var img = c.toDataURL("image/png");
+   //   document.write('<img src="' + img + '" width="328" height="526"/>');
+  // }
