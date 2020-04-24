@@ -363,7 +363,7 @@ function changeLang(font,selected_font,letter,x)
 		    var link = document.createElement("a");
 		 
 		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "lecture_page"+String(page+1)+".png");
+		    link.setAttribute("download", "lecture_page"+String(page)+".png");
 		    link.click();
 		}
 		 
