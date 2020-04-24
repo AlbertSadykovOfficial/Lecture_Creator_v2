@@ -86,25 +86,34 @@ function write_into_position()
 
 function prev()
 {
-	if (page>=1){ 
+	if (page>=1)
+	{ 
 		page--;
 		isPrev = true;
 		load_background();
 
 // текст выводит бытсрее, чем прогружается фон, для этого "придерживаем" функцию отрисовки текста
-		if ((page+1) % 2 == 0) 
+		if (page >= 1) 
 		{
-			X = template_XY[0][0];
-			Y = template_XY[0][1];
-		}
-		else
-		{
-			X = template_XY[1][0];
-			Y = template_XY[1][1];
+			if ((page+1) % 2 == 0) 
+			{
+				X = template_XY[0][0];
+				Y = template_XY[0][1];
+			}
+			else
+			{
+				X = template_XY[1][0];
+				Y = template_XY[1][1];
+			}
+			setTimeout(textIn, 300, X, Y); 
 		}
 
-		setTimeout(textIn, 300, X, Y); 
+		while (page < output_info.length-1 && output_info.length>2)
+		{
+			output_info = output_info.slice(0, -1);
 		}
+			isNext = true;
+	}
 }
 
 function next()
