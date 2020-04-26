@@ -386,9 +386,9 @@ while(symb_num<lecture_base.length)
 
 function printValue(obj,output,n_str,str_height,fontSize,font,moveX,X,Y)
 {
+	let color;
 	if (document.getElementById("font_color").checked) 	color = "rgb(47, 48, 113)";//rgb(29, 32, 185) rgb(23, 26, 155)
 	else 							color = "black";
-	
 		obj.textBaseline = "top";
 		obj.font = ("bold " + fontSize.toString() +"px "+ font);
 		obj.fillStyle = color;
@@ -452,7 +452,7 @@ function changeLang(font,selected_font,letter,x)
 		    var link = document.createElement("a");
 		 
 		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "canvasImage");
+		    link.setAttribute("download", "lecture_page"+String(page)+".png");
 		    link.click();
 		}
 		 
