@@ -386,9 +386,12 @@ while(symb_num<lecture_base.length)
 
 function printValue(obj,output,n_str,str_height,fontSize,font,moveX,X,Y)
 {
+	if (document.getElementById("font_color").checked) 	color = "rgb(47, 48, 113)";//rgb(29, 32, 185) rgb(23, 26, 155)
+	else 							color = "black";
+	
 		obj.textBaseline = "top";
 		obj.font = ("bold " + fontSize.toString() +"px "+ font);
-		obj.fillStyle = "black";
+		obj.fillStyle = color;
 		obj.fillText(output, X+moveX, Y+n_str*str_height); 
 
 }
