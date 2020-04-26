@@ -3,9 +3,18 @@ output_info = [0,0];
 page = 0;
 isNext = true;
 isPrev = false;
+settings_mode = 1;
+type_of_page = 0;
+template_XY=[//1стр     //2стр
+            [102,36,    30,36],
+            [121,83,    110,113]
 
-template_XY=[[102,36],[30,36]];
-
+            ];
+            //Поворот|Шриф + Отступ|   Ширина/высота контейнера
+page_set = [[0,0,   42,20,    42,20,    560,825, 560, 825],
+            [0,0.7, 36.5,18,  32,16,    530,730, 490, 730]
+           ];   
+           
 font_array = [["ver_1","ver_2"],["ver_3","ver_4"]];
 selected_font = ["ver_1","ver_2", 0];
 
