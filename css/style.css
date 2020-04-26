@@ -25,7 +25,7 @@ header{
 }
 
 main{
-  height: 900px;
+  height: 950px;
 }
 footer{
   height: 100px; background: gray; text-align: center; background-color: black; color: white;
@@ -33,17 +33,69 @@ footer{
 textarea{
    margin-bottom:15px; font-size: 12px; border: 3px solid black; width:460px;  height:440px;
 }
-.section{
+
+#simple_settings{
+  height: 200px;
+}
+#simple_settings_div
+{
+    display: inline-block; 
+    width:50%;
+}
+#view_back_image
+{
+  margin-top: -25px; 
+  max-height: 200px;
+}
+#font_size_1
+{
+  margin-left:35px;
+}
+#font_size_1, #font_size_2
+{
+display: inline-block;
+width: 50px; 
+}
+#str_height_1, #str_height_2
+{
+  display: inline-block;
+  width: 50px;
+}
+#width_of_str_1, #width_of_str_2
+{
+ display: inline-block;
+ width: 70px;
+}
+#height_of_str_1, #height_of_str_2
+{
+ display: inline-block;
+ width: 70px;
+}
+
+#X_1 , #Y_1, #angle_1, #X_2 , #Y_2, #angle_2
+{
+  display: inline-block;
+  width: 30px;
+}
+.ex
+{
+  display: inline-block;
+  height: 0px;
 }
 
 .params{
   text-align: center;
-
+  height: 345px;
 }
 .ww{
   display:inline-block;
 }
-
+.save_button img
+{
+  margin-left: 20px; 
+  margin-bottom:-15px; 
+  height:40px
+}
 .cl-btn-6 {
     position: relative;
     margin: 0px auto;
@@ -111,7 +163,6 @@ textarea{
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
     margin: 0 auto;
-  display: block;
   transition: all 0.3s;
   transform: translateY(0rem);
   display: flex;
@@ -122,9 +173,9 @@ textarea{
 .form__input {
   font-family: 'Roboto', sans-serif;
   color: #333;
-  font-size: 15px;
+  font-size: 12px;
   margin: 0 auto;
-  padding: 0.5rem 0.5rem;
+  padding: 0.3rem 0.2rem;
   border-radius: 0.2rem;
   background-color: rgb(255, 255, 255);
   border: none;
@@ -152,7 +203,7 @@ p.params{
   margin-top: 0px;
   margin-bottom: 0px;
 }
-a.set_button{
+a.set_button, a.view_set_button{
   display: inline-block;
   font-size: 90%;
   font-weight: 700;
@@ -164,8 +215,16 @@ a.set_button{
   box-shadow: 0 -3px rgb(53,167,110) inset;
   transition: 0.2s;
 } 
-a.set_button:hover { cursor: crosshair; background: rgb(53, 167, 110); }
-a.set_button:active{
+a.set_button{
+    font-size: 50%;
+    box-shadow: 0 -3px rgb(53,86,232) inset;
+}
+a.set_button:hover
+{
+  cursor: pointer;
+}
+a.view_set_button:hover { cursor: crosshair; background: rgb(53, 167, 110); }
+a.set_button:active, a.view_set_button:active{
   cursor: wait;
   background: rgb(33,147,90);
   box-shadow: 0 3px rgb(33,147,90) inset;
