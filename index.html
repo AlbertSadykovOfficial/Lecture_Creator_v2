@@ -1,110 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<title>LeCreat</title>
+<!-- Style ////////////////////////////////////////////////////////////////////////////////////// -->	
+	
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/hello_panel.css">
+
 	<link rel="stylesheet" href="css/config.css">
+	<link rel="stylesheet" href="css/font_upload.css">
+	<link rel="stylesheet" href="css/settings_bar.css">
+	<link rel="stylesheet" href="css/buttons.css">
 	<link rel="stylesheet" href="css/style.css">
 
+ <script src='js/hello_panel.js'></script> 
 	 <script src='js/constants.js'></script> 
 		<script>
 			function saveCanvasAsImageFile(){}
-		</script>
-	 
+
+	 		function joke()
+	 		{
+				var image = new Image();
+				image.src = "images/volk.png"
+
+				image.onload = function() 
+					{
+					document.getElementById("myCanvas").getContext("2d").drawImage(image,100, 0, 500, 500);
+					volk_joke_is_print_now = true;
+					}
+			}
+	 	</script>
 </head>
-<body style="background: url(images/bkg.jpg); background-size: 75%;">
-	<header>
-	Lecture Creator	
-	<span class="cl-btn-6" style="display: inline-block; float: middle;">
-    <span class="cl-btn-6-in">
-         <span class="cl-btn-6-txt">CHILL</span>
-    </span>
-</span>
-</header>
-<main>
-<div class="section" style="width: 40%; float: left; padding-left: 50px; margin-top: 15px;"><pre>
-<textarea id='lecture_area' placeholder=""></textarea>
-<span><a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a><a class="page_button" onclick="load_background()" title = "Обновить листок">Очистить</a><a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a><a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a><a class="save_button" onclick="saveCanvasAsImageFile()"><img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" ></a></span>
-<!--                                                                                                       
-  width: 415px;
---><div class='params' style="width: 415px;">
-<div style="font-family: 'Roboto', sans-serif;">Настройки <a class="set_button" onclick="change_mode()" title = "Проверить границы текста"> </a></div>
-<div><div style="float: left; margin-left: 30px;">Шрифт № <input id='font_num' type='number' style='max-width: 40px;' value='1' min="1" max='2'></div>Фон № <input onchange="changeBack()" id='background_num' type='number' style='max-width: 40px;' value='1' min="1" max='2'></div>
-<!--                                                                                                       
+<body style="background: url(images/bkg.jpg);  background-size: 75%;">
+			<header>
+			<span>Lecture Creator</span>
+				<span class="cl-btn-6" style="display: inline-block; float: middle;">
+			    <span class="cl-btn-6-in">
+			         <span class="cl-btn-6-txt" onclick="joke()">CHILL</span>
+			    </span>
+				</span>
+			</header>
 
---><div id="simple_settings" ><div id="simple_settings_div" style="float: left"><div class="form__group"><input type="text" style="width: auto;" class="form__input" id="str_height_simple" placeholder="Межстрочный интервал" required="" value='42' onchange="uploadValues();" /><label for="name" class="form__label">Межстрочный интервал</label></div><div class="form__group simple"><input type="text" style="width: auto;" class="form__input" id="font_size_simple" placeholder="Размер шрифта" required="" value='20' onchange="uploadValues();" /><label for="name" class="form__label">Размер шрифта</label></div><div style="font-family: 'Roboto', sans-serif; font-size: 16px;"><input id="font_color" value="0" type="checkbox" > Синяя ручка</div>
-</div><div id="simple_settings_div" style="float: right;">
-<img id="view_back_image"	data-height="200px"></div>
-</div><!--                                                                                                       
+			<div class="num_of_page"><div style="margin-top: 17px; font-size: 30px;"></div></div>
+			<div class="hint_btn" onclick="show_hints()"></div>
 
---><div id="extend_settings" data-height="300px">############Страница 1############
-<div class="form__group"><input id="font_size_1"  type="text" class="form__input" placeholder="Размер Шрифта" required=""/>|<input 					  id="str_height_1"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/>|<input 					id="width_of_str_1" type="text" class="form__input" placeholder="Ширина" required=""/>-<input 											id="height_of_str_1" type="text" class="form__input" placeholder="Высота" required=""/><label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label></div>
-<div class="form__group"><input id="X_1" type="text" class="form__input" placeholder="X" required=""  />-<input id="Y_1" type="text" class="form__input" placeholder="Y" required=""  />|<input id="angle_1" class="form__input"  value='0' max="30" min="-30" placeholder="∡"><label for="name" class="form__label">X-Y | Угол</label></div><!--                                                                                                       
+		<!--  Hello curtain     //////////////////////////////////////////////////////////////////// 
 
+		https://css-tricks.com/creating-css-sliding-door-effect/
+		-->
+		<div id="this_1" class="curtain" onscroll="check_Y()" onmousemove="check_Y()" onmouseout="check_Y()" data-x="">
+		  <div class="curtain__wrapper" onclick="close_curtain()">
+		    <input id='curtain' type="checkbox" checked>
+
+		    <div class="curtain__content">	
+		    	<!-- <img src="images/favicon.ico"><div style="width: 15%; font-size: 54px; color:black;font-family: 'Nickainley';">LeCreat</div> -->
+		    <div class="SVG_LeCreat"> 
+		    		<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1374.5 250.6" style="enable-background:new 0 0 1374.5 250.6;" xml:space="preserve">
+							<style type="text/css">
+								.st0{fill:black;stroke:black;stroke-width:2;stroke-miterlimit:10;}
+							</style>
+							<g id="XMLID_1_">
+					<path id="XMLID_42_" class="st0" d="M145.1,3.2c8.8,0,14.8,5.5,14.8,13.5c0,11.8-18,21.2-35.8,26c-6,15-11.8,33.5-16.5,49.8
+						c-8.3,26.3-13.8,43-18.5,54.8c-3.5,8.5-7.3,16.3-11.8,23.3c6.8,6.3,13.5,13,20.5,19.8c20.8,20.8,43,44.3,65.8,44.3
+						c12.5,0,24-5,28-13.8c0.8-2,2.8-3.3,4.8-3.3c3.5,0,5.3,3.5,5.3,5.5c0,0.5-0.3,1.3-0.5,2c-6.3,14-22.8,20.3-37.8,20.3
+						c-26.5,0-51.3-25.8-73-47.5c-6.5-6.3-12.8-12.8-19-18.3c-0.8,1-1.5,2-2.3,2.8c-8.8,10.3-22,16.8-35.3,16.8c-17.3-1.3-26-9.3-26-24
+						c1-17.5,13-27.5,27.5-27.5c10.8,0,22.5,6.5,34,16.3c3.8-6.3,7-13.3,10-20.5c4.8-12.3,8.5-23.3,18-54c4.3-14,9.3-30,14.5-44.3
+						c-5,1-10.3,1.8-15.3,2.5c-33.5,5.3-70.3,11-74,38c-0.3,1-0.3,2-0.3,3c-0.3,5.5,1.3,10.8,4.3,14.8s7.3,6.8,13,7.5l2.5,0.3
+						c3,0,5.3,2.5,5,5.5c0,2.8-2.5,5-5.5,5c-1.3,0-2.5,0-3.5-0.3c-8.8-1.3-15.5-5.5-20-11.8c-4.5-5.8-6.5-13.5-6.3-21.5
+						c0-1.3,0-2.8,0.3-4c4.8-34.8,45.3-41,82.8-46.8l21.3-3.3C121.6,19.5,132.3,3.2,145.1,3.2z M63.6,172.5C53.1,164,43.6,158,35.1,158
+						c-8.8,0-16.3,6.5-16.8,17c0,9.8,7,13.5,15.5,13.5c10,0,20.5-5.3,27.3-13C61.8,174.5,62.6,173.5,63.6,172.5z M148.6,16.7
+						c0-2-1.5-3.5-3.5-3.5c-5.5,0-12,8.5-16,17C139.6,28,148.6,20.7,148.6,16.7z"/>
+					<path id="XMLID_46_" class="st0" d="M228.6,143.2c0,0.8-0.3,1.3-0.5,2c-16.3,36-35.3,52.5-60.5,52.5c-20.8,0-33.3-13.8-32.8-34.3
+						c1.5-32,27.5-84,57-84c12.5,0,21.3,6.5,21.3,18.5c0,26.5-37.3,42.5-65,49.3c-1.8,6.5-2.5,11.3-2.8,16.5c-0.5,14.3,7.5,23,22.5,23.5
+						c20.5,0.5,36.5-14,50.5-46.3c1.3-2.5,4.3-3.8,7-2.8C227.3,139.2,228.6,141.2,228.6,143.2z M202.6,98c0-6.8-5.3-8-10.8-8
+						c-17.3,0-31.8,26-39.8,45.3C172.8,128.7,202.6,116.5,202.6,98z"/>
+					<path id="XMLID_49_" class="st0" d="M307.8,143.2c0,0.8-0.3,1.3-0.5,2c-15.3,34-33.3,52.5-62.3,52.5c-18.3,0-30.3-13.8-30.3-34.3
+						c0-39,31.3-84,56.8-84c14.3,0,21.3,9.8,21.3,23.5c0,11.3-5.5,22.8-11.3,22.8c-3.3,0-5.3-1.8-5.3-5c0-3.5,6-7.8,6-17.8
+						c0-8.8-3.3-13-10.8-13c-19.5,0-46.3,43.8-46.3,73.8c0,14,8,23.5,20,23.5c24.3,0,39.8-17.5,52.3-46.3c1.3-2.5,4.3-3.8,7-2.8
+						C306.6,139.2,307.8,141.2,307.8,143.2z"/>
+					<path id="XMLID_51_" class="st0" d="M359.8,143c0,0.8-0.3,1.5-0.5,2.3c-14.5,31.3-28.5,52.5-51.5,52.5c-12,0-18.5-9-18.5-21
+						c0-9.3,6.3-31,14.3-51.5l12.8-35.8h-15.8c-3,0-5.3-2.3-5.3-5.3c0-2.8,2.3-5.3,5.3-5.3h19.3c0.5-1,12.8-36.3,13-37.3
+						c0.8-2.3,2.8-3.5,5-3.5c3.8,0,6.3,3.8,5,7c0.8-1.5-10,29-11.8,33.8h16.8c3,0,5.3,2.5,5.3,5.3c0,3-2.3,5.3-5.3,5.3h-20.5
+						c-1.5,4.8-5.8,16.3-14,39.5c-10.3,29-13.5,40.5-13.5,47.8c0,6.8,3,10.5,8,10.5c18,0,30-20.8,41.8-46.5c1-1.8,3-3,5-3
+						c0.8,0,1.5,0.3,2.3,0.5C358.6,139.2,359.8,141,359.8,143z"/>
+					<path id="XMLID_53_" class="st0" d="M460.1,143c0,0.8-0.3,1.5-0.5,2.3c-16.3,37.3-28.8,52.5-45.5,52.5c-11,0-16.5-6.8-18-17.8
+						c-7.3,10.3-18.8,17.8-30,17.8h-0.3c-15.8,0-24-9-24-26c0-12.5,6-27.3,30-89.5c0.8-2,2.8-3.3,4.8-3.3c4.3,0,6.3,3.8,5,7
+						c-26.5,70.5-29.3,75.8-29.3,85.8c0,10.3,4.8,15.5,13.8,15.5c10.3,0,20.5-8.5,28.8-25.5c8.8-17.5,18-44,31-79.5
+						c0.8-2,2.8-3.3,4.8-3.3c4,0,6.5,3.8,5.3,7c-5.5,14.5-10.3,28-14,38c-9.5,25.8-15.3,46-15.3,52.8c0,7.3,2.3,10.5,7.5,10.5
+						c12,0,21.8-14.3,36-46.3c0.8-2,2.8-3.3,4.8-3.3c0.8,0,1.5,0.3,2.3,0.5C458.8,139.2,460.1,141,460.1,143z"/>
+					<path id="XMLID_55_" class="st0" d="M552.1,143c0,0.8-0.3,1.5-0.5,2.3c-16.3,37.3-28.8,52.5-45.8,52.5h-0.3
+						c-11.8,0-17.8-8.8-17.8-21c0-5,0.8-10,2.5-16.3c2-8,13-41.3,15.3-46.8c-19-6.3-21.8-7.3-27.3-10c-1,3-2.8,6.5-22.8,50.3
+						c-1,2-2.8,3-4.5,3c-1,0-1.8-0.3-2.5-0.5c-1.8-1-3-2.8-3-4.8c0-0.8,0.3-1.5,0.5-2.3l20-43.5l3-7.5c-7.5-5.3-12.8-11.8-12.8-21
+						c0-10.3,7.3-16.3,15.3-16.3c9,0,14.5,6.5,14.5,16.5c0,4-1,6.3-4,16c7,3.5,15.5,6.3,22.8,8.8c3.5,1,6.8,2,9.5,3s4,4.3,3,7.3
+						c-3.3,8.3-15.3,44-16.8,50.3c-1.5,5.3-2,9.5-2.3,13.8c0,6.3,2,10.5,7.5,10.5c12.3,0,21.8-14,36-46.3c1-2,2.8-3.3,4.8-3.3
+						c0.8,0,1.5,0.3,2.3,0.5C550.8,139.2,552.1,141,552.1,143z M471.6,71.7c-3.3,0-4.8,2-4.8,4.8c0,4,2.3,8.5,6,11.5
+						c1.3-3.5,2.8-8,2.8-10.5C475.6,73.2,473.6,71.7,471.6,71.7z"/>
+					<path id="XMLID_58_" class="st0" d="M631.3,143.2c0,0.8-0.3,1.3-0.5,2c-16.3,36-35.3,52.5-60.5,52.5c-20.8,0-33.3-13.8-32.8-34.3
+						c1.5-32,27.5-84,57-84c12.5,0,21.3,6.5,21.3,18.5c0,26.5-37.3,42.5-65,49.3c-1.8,6.5-2.5,11.3-2.8,16.5c-0.5,14.3,7.5,23,22.5,23.5
+						c20.5,0.5,36.5-14,50.5-46.3c1.3-2.5,4.3-3.8,7-2.8C630.1,139.2,631.3,141.2,631.3,143.2z M605.3,98c0-6.8-5.3-8-10.8-8
+						c-17.3,0-31.8,26-39.8,45.3C575.6,128.7,605.3,116.5,605.3,98z"/>
+					<path id="XMLID_61_" class="st0" d="M854.1,145c-18,43.5-42.3,69.8-81.3,69.8c-32.5,0-49.5-20.3-49.5-51.3
+						c0-15.3,4.5-32.5,10.5-51.3c-25.5-6-42-23.3-42-48.8c0-17,7-35.3,18-48.8c1-1.3,2.5-1.8,4-1.8c2.8,0,5.3,2,5.3,5.3
+						c0,1.3-0.3,2.5-1.3,3.5c-9,10-15.5,27.5-15.5,41.3c0,22.3,14.5,34.8,35.3,39.3c14-40,42.8-89.5,78.3-88.8c20.5,0.5,31,15.3,31,35
+						c0,42-49,66.3-91.5,66.3c-3.8,0-6.8-0.3-11-0.8c-5.8,18.5-10.5,35-10.5,49.5c0,26.8,14.5,40.8,39,40.8c34.5,0,55.3-23.5,71.5-63.3
+						c1-2.8,4.3-4,6.8-3C853.8,139.2,855.1,142.2,854.1,145z M754.6,104.2c37,0,81.8-20.3,81.8-55.8c0-14.3-6.8-24.5-20.5-24.5
+						c-29.5,0-56,47-67.8,80C750.1,104.2,752.3,104.2,754.6,104.2z"/>
+					<path id="XMLID_64_" class="st0" d="M946.6,143c0,0.8-0.3,1.5-0.5,2.3c-16.3,37.3-28.8,52.5-45.8,52.5h-0.3
+						c-11.8,0-17.8-8.8-17.8-21c0-5,0.8-10,2.5-16.3c2-8,13-41.3,15.3-46.8c-19-6.3-21.8-7.3-27.3-10c-1,3-2.8,6.5-22.8,50.3
+						c-1,2-2.8,3-4.5,3c-1,0-1.8-0.3-2.5-0.5c-1.8-1-3-2.8-3-4.8c0-0.8,0.3-1.5,0.5-2.3l20-43.5l3-7.5c-7.5-5.3-12.8-11.8-12.8-21
+						c0-10.3,7.3-16.3,15.3-16.3c9,0,14.5,6.5,14.5,16.5c0,4-1,6.3-4,16c7,3.5,15.5,6.3,22.8,8.8c3.5,1,6.8,2,9.5,3s4,4.3,3,7.3
+						c-3.3,8.3-15.3,44-16.8,50.3c-1.5,5.3-2,9.5-2.3,13.8c0,6.3,2,10.5,7.5,10.5c12.3,0,21.8-14,36-46.3c1-2,2.8-3.3,4.8-3.3
+						c0.8,0,1.5,0.3,2.3,0.5C945.3,139.2,946.6,141,946.6,143z M866.1,71.7c-3.3,0-4.8,2-4.8,4.8c0,4,2.3,8.5,6,11.5
+						c1.3-3.5,2.8-8,2.8-10.5C870.1,73.2,868.1,71.7,866.1,71.7z"/>
+					<path id="XMLID_67_" class="st0" d="M1025.8,143.2c0,0.8-0.3,1.3-0.5,2c-16.3,36-35.3,52.5-60.5,52.5c-20.8,0-33.3-13.8-32.8-34.3
+						c1.5-32,27.5-84,57-84c12.5,0,21.3,6.5,21.3,18.5c0,26.5-37.3,42.5-65,49.3c-1.8,6.5-2.5,11.3-2.8,16.5c-0.5,14.3,7.5,23,22.5,23.5
+						c20.5,0.5,36.5-14,50.5-46.3c1.3-2.5,4.3-3.8,7-2.8C1024.6,139.2,1025.8,141.2,1025.8,143.2z M999.8,98c0-6.8-5.3-8-10.8-8
+						c-17.3,0-31.8,26-39.8,45.3C970.1,128.7,999.8,116.5,999.8,98z"/>
+					<path id="XMLID_70_" class="st0" d="M1126.5,143c0,0.8-0.3,1.5-0.5,2.3l-0.3,0.8c-9.5,21-23,51.8-45.5,51.8c-12,0-18-8.8-18-21
+						c-10,14-20.5,21-31.3,21c-14,0-20.5-12-20.5-27c0-32.8,25.3-91.3,55.3-91.3c10.5,0,18.3,4.3,22.8,13.3c1.5-4.3,3-8,4.3-11.3
+						c0.8-2,2.8-3.3,5-3.3c4,0,6,4,4.8,7l-12.5,33.5c-9,25.3-17.3,47-17.3,58c0,7.5,2.3,10.5,7.5,10.5c15.5,0,27.5-27,35.8-45.5l0.3-0.8
+						c1-2,2.8-3.3,4.8-3.3c0.8,0,1.5,0.3,2.3,0.5C1125.3,139.2,1126.5,141,1126.5,143z M1075.8,124.2l6-16c-0.5-11.5-7-18.3-16-18.3
+						c-23,0.5-44.3,54.3-44.8,79c0,11,2.3,18.3,9.8,18.3C1051,187.2,1065.8,149.7,1075.8,124.2z"/>
+					<path id="XMLID_73_" class="st0" d="M1178.5,143c0,0.8-0.3,1.5-0.5,2.3c-14.5,31.3-28.5,52.5-51.5,52.5c-12,0-18.5-9-18.5-21
+						c0-9.3,6.3-31,14.3-51.5l12.8-35.8h-15.8c-3,0-5.3-2.3-5.3-5.3c0-2.8,2.3-5.3,5.3-5.3h19.3c0.5-1,12.8-36.3,13-37.3
+						c0.8-2.3,2.8-3.5,5-3.5c3.8,0,6.3,3.8,5,7c0.8-1.5-10,29-11.8,33.8h16.8c3,0,5.3,2.5,5.3,5.3c0,3-2.3,5.3-5.3,5.3H1146
+						c-1.5,4.8-5.8,16.3-14,39.5c-10.3,29-13.5,40.5-13.5,47.8c0,6.8,3,10.5,8,10.5c18,0,30-20.8,41.8-46.5c1-1.8,3-3,5-3
+						c0.8,0,1.5,0.3,2.3,0.5C1177.3,139.2,1178.5,141,1178.5,143z"/>
+					<path id="XMLID_75_" class="st0" d="M1238,181.7c-7,0-13.5-2.3-19-6.8c-9.3,12.5-22,22.8-34,22.8c-16.3,0-21.8-10.8-21.8-25.3
+						c0-29,13-53.3,21.3-66.8c10.5-17.5,22.8-26.3,35.3-26.3c16.5,0.5,25,11.8,25,26.8c0,15.8-8,40.3-19.5,59.8c2.8,3.5,7,5.3,12.8,5.3
+						c10.5,0,19.3-9.5,28-30.3c0.8-2,2.8-3.3,4.8-3.3c3.8,0,6.5,3.8,5,7.3C1264.8,170.2,1253,181.7,1238,181.7z M1222.8,144.5
+						c-0.8,2-0.8,4-1,5.8c7.8-15.5,12.5-32.8,12.5-44.3c0-10.5-6.3-16-14.8-16c-9.5,0-18.5,8.8-25.8,21.3c-6.5,10.8-19.8,35-19.8,60.8
+						c0,9,3,15.3,11,15.3c9.3,0,19.8-10,28-21.8c-2.8-6.5-2.3-17.5-0.5-23.8c0.5-2.5,2.8-4,5.3-4C1221.3,137.7,1223.8,141,1222.8,144.5z
+						"/>
+					<path id="XMLID_78_" class="st0" d="M1368.3,143c0,0.8-0.3,1.5-0.5,2.3c-16.3,37.3-28.8,52.5-45.8,52.5h-0.3
+						c-11.8,0-17.8-8.8-17.8-21c0-5,0.8-10,2.5-16.3c2-8,13-41.3,15.3-46.8c-19-6.3-21.8-7.3-27.3-10c-1,3-2.8,6.5-22.8,50.3
+						c-1,2-2.8,3-4.5,3c-1,0-1.8-0.3-2.5-0.5c-1.8-1-3-2.8-3-4.8c0-0.8,0.3-1.5,0.5-2.3l20-43.5l3-7.5c-7.5-5.3-12.8-11.8-12.8-21
+						c0-10.3,7.3-16.3,15.3-16.3c9,0,14.5,6.5,14.5,16.5c0,4-1,6.3-4,16c7,3.5,15.5,6.3,22.8,8.8c3.5,1,6.8,2,9.5,3s4,4.3,3,7.3
+						c-3.3,8.3-15.3,44-16.8,50.3c-1.5,5.3-2,9.5-2.3,13.8c0,6.3,2,10.5,7.5,10.5c12.3,0,21.8-14,36-46.3c1-2,2.8-3.3,4.8-3.3
+						c0.8,0,1.5,0.3,2.3,0.5C1367,139.2,1368.3,141,1368.3,143z M1287.8,71.7c-3.3,0-4.8,2-4.8,4.8c0,4,2.3,8.5,6,11.5
+						c1.3-3.5,2.8-8,2.8-10.5C1291.8,73.2,1289.8,71.7,1287.8,71.7z"/>
+							</g>
+						</svg>
+				</div>
+		    </div>
+		  </div> 
+		</div> 
+
+<!--//////////////////////////////////////////////////////////////////// 
+<div style="font-family: 'Roboto', sans-serif;"><div style="float: left; margin-left: 30px;">Шрифт № <input id='font_num' type='number' style='max-width: 40px;' value='1' min="1" max='5'></div>Фон № <input onchange="changeBack()" id='background_num' type='number' style='max-width: 40px;' value='1' min="1" max='3'></div>
 -->
-############Страница 2############
-<div class="form__group"><input id="font_size_2" type="text" class="form__input" placeholder="Размер Шрифта" required=""  />|<input 				 id="str_height_2"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/>|<input 				 id="width_of_str_2" type="text" class="form__input" placeholder="Ширина" required=""/>-<input 											 id="height_of_str_2" type="text" class="form__input" placeholder="Высота" required=""/><label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label></div>
-<div class="form__group"><input id="X_2" type="text" class="form__input" placeholder="X" required=""  />-<input id="Y_2" type="text" class="form__input" placeholder="Y" required=""  />|<input id="angle_2" class="form__input" value='0' max="30" min="-30" placeholder="∡"><label for="name" class="form__label">X-Y | Угол</label></div></div></div><span class="ww"></span></div></div></pre>
+<main>
+		<div class="section" style="width: 40%; float: left; padding-left: 50px; margin-top: 15px;"><!-- section -->
+					
+					<textarea id='lecture_area' placeholder=""></textarea>
+					
+					<span><a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a><a class="page_button" 
+						onclick="load_background()" title = "Обновить листок">Очистить</a><a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a><a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a>
+								<a class="save_button" onclick="saveCanvasAsImageFile()" style="cursor:pointer; margin-left: 10px;"><img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" ></a>
+					</span>
+		<!--                                                                                                       
+		  width: 415px;
+		-->
+					<div class='params' style="background-image: url(images/settings_back.jpg); background-size: 100% 100%;">
+							
+							<div style="font-family: 'Roboto', sans-serif; height: 22px; margin:20px auto;">Настройки <a class="set_button" onclick="change_settings_mode()" title = "Проверить границы текста"> </a>
+							</div>
 
-<div class="section" style="cursor: crosshair; width: 50%; float: left; padding:10px; margin-top: 15px;" onclick="write_into_position()">
-		<canvas id="myCanvas" crossorigin="anonymous">
-		</canvas>
-</div>
+							<div class="font_and_back">
+									<select id='font_num' style="font-size: 20px;" onchange="load_description()">
+											<optgroup label="HQ">
+												<option value="1" Selected>Шрифт 1</option>
+												<option value="2">Шрифт 2</option>
+												<option value="3">Шрифт 3</option>
+											</optgroup>
+											<optgroup label="SD">
+												<option value="4">Шрифт 4</option>
+												<option value="5">Шрифт 5</option>
+											</optgroup>
+									</select>
+							</div>
+
+							<div class="font_and_back">
+									<select id='background_num' style="font-size: 18px; " onchange="changeBack()">
+										<optgroup label="В Клетку">
+											<option value="1" Selected>Клетка №1</option>
+											<option value="2">Клетка №2</option>
+										</optgroup>
+										<optgroup label="В Линию">
+											<option value="3">Линейка №1</option>
+										</optgroup>
+									</select>
+							</div>
+						
+							<div id="simple_settings">
+								<div id="simple_settings_div" style="float: left">
+									<div class="form__group">
+										<input type="text" style="width: auto;" class="form__input" id="str_height_simple" placeholder="Межстрочный интервал" required="" value='42' onchange="uploadValues();" />
+										<label for="name" class="form__label">Межстрочный интервал</label>
+									</div>
+
+									<div class="form__group simple">
+										<input type="text" style="width: auto;" class="form__input" id="font_size_simple" placeholder="Размер шрифта" required="" value='20' onchange="uploadValues();" />
+										<label for="name" class="form__label">Размер шрифта</label>
+									</div>
+
+									<div style="font-family: 'Roboto', sans-serif; font-size: 16px; margin-top: 35px;">
+										<input id="font_color" value="0" type="checkbox" > Синяя ручка
+									</div>
+								</div>
+
+								<div id="simple_settings_div" style="float: right;"><img id="view_back_image"	data-height="200px"></div>
+							
+							</div>
+
+							<div id="extend_settings" data-height="300px">
+								<p style="margin-bottom: 10px">############Страница_1############</p>
+								<div class="form__group">
+									<input id="font_size_1"  type="text" class="form__input" placeholder="Размер Шрифта" required=""/> |
+									<input id="str_height_1"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
+									<input id="width_of_str_1" type="text" class="form__input" placeholder="Ширина" required=""/> -
+									<input id="height_of_str_1" type="text" class="form__input" placeholder="Высота" required=""/>
+									<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
+								</div>
+								<div class="form__group">
+									<input id="X_1" type="text" class="form__input" placeholder="X" required=""  /> -
+									<input id="Y_1" type="text" class="form__input" placeholder="Y" required=""  /> |
+									<input id="angle_1" class="form__input"  value='0' max="30" min="-30" placeholder="∡">
+									<label for="name" class="form__label">X-Y | Угол</label>
+								</div><!--                                                                                                       
+
+					-->
+								<div style="color: rgb(190,199,197); margin-top: 25px;">
+									<p style="margin-bottom: 10px">############Страница_2############</p>
+									<div class="form__group">
+										<input id="font_size_2" type="text" class="form__input" placeholder="Размер Шрифта" required=""  /> |
+										<input id="str_height_2"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
+										<input id="width_of_str_2" type="text" class="form__input" placeholder="Ширина" required=""/> -
+										<input id="height_of_str_2" type="text" class="form__input" placeholder="Высота" required=""/>
+										<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
+									</div>
+									<div class="form__group">
+										<input id="X_2" type="text" class="form__input" placeholder="X" required=""  /> -
+										<input id="Y_2" type="text" class="form__input" placeholder="Y" required=""  /> |
+										<input id="angle_2" class="form__input" value='0' max="30" min="-30" placeholder="∡">
+										<label for="name" class="form__label">X-Y | Угол</label>
+									</div>
+								</div>
+							</div>
+
+							<div style='height: 30px; position: relative; z-index: 1; cursor: pointer;' onclick="change_settings_mode()"></div>
+					</div>
+					<!-- Я не ЭБУ почему спан, помещенный в pre, так влияет на ширину.
+							!!!! 	НЕ УДАЛЯТЬ (pre)   !!! - будет наложение букв
+							-->
+					<pre><span class="ww"></span></pre> 
+					
+					
+		</div> <!-- section -->
+
+		<div class="section" style="cursor: crosshair; width: 50%; float: left; margin-top: 15px;" onclick="write_into_position()" >
+				
+				<canvas id="myCanvas" crossorigin="anonymous" onmouseover="hide_num_of_page()">
+				</canvas>
+		
+		</div> 
 </main>
 
 <footer>
 
-	<div class="footer-cta">Нашел БАГ? ОШИБКУ? Напиши ПО-<img style="margin-top:-30px; height:50px;" src="images/bratz.gif">КИ</div> 
-	<a href="https://vk.com/id267162357" class="footer-button" style="background: url(images/wolf2.jpg); background-size: 100%;" target="_blank">Написать</a>
+	<div class="footer-cta">Нашел БАГ? ОШИБКУ? Напиши ПО-<img style="margin-top:-30px; height:50px;" src="images/bratz.png">КИ</div> 
+	<a href="https://vk.com/id267162357" class="footer-button" style="background: url(images/wolf.jpg); background-size: 100%;" target="_blank">Написать</a>
 
 </footer>
-		<script src='js/jquery-1.11.1.min.js'></script> 
-	 	<script src="js/script.js"></script>
 
-		<script type="text/javascript">
-			change_mode();
-			set_arguments();
+<!--	<script src='js/another/jquery-1.11.1.min.js'></script> 
+-->	 	
+	 	<script src='js/page.js'></script> 
+	 	<script src="js/set_page_values.js"></script>
+	 	<script src="js/settings_mode.js"></script>
+	 	<script src="js/prev_next_btns.js"></script>
+	 	<script src="js/handwrite.js"></script>
+		<script src='js/save_canvas.js'></script> 
+		<script src='js/hint_btn.js'></script> 
 		
-		var image = new Image();
-		image.src = "images/volk_pirat.png"
+		<script src="js/hyphenation.js"></script>
 
-		image.onload = function() 
-			{
-			document.getElementById("myCanvas").getContext("2d").drawImage(image,100, 0, 500, 500);
-			}
-			document.getElementById("myCanvas").height = 0.8*document.body.clientHeight+10; 
-			document.getElementById("myCanvas").width = 0.8*0.78*document.body.clientHeight+8;
-
-			//document.getElementById("height_of_str").max = document.body.clientHeight;
-			//document.getElementById("width_of_str").max = document.body.clientWidth;
-			txt = "1) Вставьте сюда текст (Этот текст не считается, вставьте свой) \n2) Нажмите ВПЕРЕД >>, чтобы написать 1 страницу \n3)Сохраниет страницу (красная кнопка) (Далее Повторяйте пункт (2))\n\n Если не устраивает как написан текст:\n1)Очистите листок (ОЧИСТИТЬ) \n2) (По нужде) Поменяйте Шрифт, его Размер , Межстрочный интервал или ФОН \n (Шрифт№2 Поддерживает Больше символов) \n 3)Нажмите на то место на листе, откуда следует начать выводить текст\n\n--Расширенные Настройки:------(Потыкайте - поймете)\n 1)Нажмите на СИНЮЮ кнопку рядом с надписью  (НАСТРОЙКИ)  \n 2)Нажмите на #, чтобы посмотреть как настроен контейнер\n  --Серые линии помогут вам настроить наклон текста(их следует делать параллельными основной разметке тетрадного листа) \n  --Повернуть текст вы можете, указав значение Угла (от -30 до 30) (Можно и дробные числа) (Дробь пиши через ТОЧКУ : 0.7). \n --КРАСНЫМ выделено место, КУДА Напечатается текст \n (X, Y) - Отступ от левого и верхнего краев соответсвенно. \n (Ширина, Высота) - задают крайние линии печати текста \n\n !!! Ангийские буквы (пока) не понимает.\n\t P.S Tutorial подготовлен  АИ 17-02.(РГУ НГ) ";
-			
-			document.querySelector("textarea").placeholder = txt;
-		</script>
+		<script src="js/start.js"></script>
 		
-
-		<script type="text/javascript">
-/*			// -------------------------------------------- Не работает на компе, но на сервере работает
-					function getImage(canvas){
-		    var imageData = canvas.toDataURL();
-		    var image = new Image();
-		    image.src = imageData;
-		    return image;
-		}
-		 
-		function saveImage(image) {
-		    var link = document.createElement("a");
-		 
-		    link.setAttribute("href", image.src);
-		    link.setAttribute("download", "canvasImage");
-		    link.click();
-		}
-		 
-		function saveCanvasAsImageFile(){
-		    var image = getImage(document.getElementById("myCanvas"));
-		    saveImage(image);
-		}	
-		*/
-	</script>
 </body>
 </html>
