@@ -1,0 +1,33 @@
+@font-face{
+font-family:'Nickainley'; src:url(../fonts/Nickainley.otf);
+}
+
+/* HQ Fonts Designed by Me */
+@font-face{
+font-family:ver_1_1; src:url(../fonts/ver_1_1.otf);
+}
+@font-face{
+font-family:ver_1_2; src:url(../fonts/ver_1_2.ttf);
+}
+@font-face{
+font-family:ver_2_1; src:url(../fonts/ver_2_1.otf);
+}
+@font-face{
+font-family:ver_2_2; src:url(../fonts/ver_2_2.otf);
+}
+
+/* HQ Fonts Sentimented by Me from other fonts */
+@font-face{
+font-family:ver_3_1; src:url(../fonts/ver_3_1.ttf);
+}
+@font-face{
+font-family:ver_3_2; src:url(../fonts/ver_3_2.ttf);
+}
+
+/* Not HQ Fonts */
+@font-face{
+font-family:ver_4_0; src:url(../fonts/ver_4_0.otf);
+}
+@font-face{
+font-family:ver_5_0; src:url(../fonts/ver_5_0.otf);
+}

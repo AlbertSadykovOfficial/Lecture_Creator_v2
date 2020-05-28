@@ -1,0 +1,114 @@
+body{
+font-family: 'Roboto', sans-serif;
+max-height: 1271px; 
+height: 1075px; 
+width:1270px;
+overflow-x: hidden;
+}
+header{
+  padding: 0px; padding-left: 50px; padding-top: 10px; height: 35px; text-align: left; background-color: black; color: white;
+width:auto;
+}
+
+main{
+  height: 980px;
+}
+footer{
+  height: 100px; background: gray; text-align: center; background-color: black; color: white;
+}
+textarea{
+   margin-bottom:15px; font-size: 12px; border: 3px solid black; border-radius: 5px; width:460px;  height:440px;
+   max-width: 100%;
+}
+optgroup{
+  font-size: 12px;
+}
+option{
+  font-size: 12px;
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-size: 20px;
+}
+
+/* Scroll-Bar--------------------------------*/
+::-webkit-scrollbar{
+    width:12px;
+    background-color: orange;
+}
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #777;
+    background-color: #aaa;
+}
+::-webkit-scrollbar-thumb:hover{
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+::-webkit-scrollbar-track{
+    border-width:0;
+}
+
+::-webkit-scrollbar-track:hover{
+    border-left: solid 1px #aaa;
+    background-color: #eee;
+}
+
+/* --------------------------------*/
+.form_group {
+  margin-bottom: 20px;
+}
+.form__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+    margin: 0 auto;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 12px;
+  margin: 0 auto;
+  padding: 0.3rem 0.2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 300px;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
+/*----------------------------------------------------------------------------*/
+
+.num_of_page{
+      position: fixed;
+    width: 70px;
+    height: 70px;
+    padding: auto;
+    font-size: 40px;
+    color: white;
+    border-radius: 10px;
+    margin-top: 15px; 
+    margin-left: 47.5%;
+    text-align: center;
+     transition: all .35s;
+     opacity: 0;
+    background-color: rgba(0,0,0,0.6);
+}
