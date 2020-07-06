@@ -155,9 +155,14 @@
 					
 					<textarea id='lecture_area' placeholder=""></textarea>
 					
-					<span><a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a><a class="page_button" 
-						onclick="load_background()" title = "Обновить листок">Очистить</a><a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a><a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a>
-								<a class="save_button" onclick="saveCanvasAsImageFile()" style="cursor:pointer; margin-left: 10px;"><img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" ></a>
+					<span>
+							<a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a>
+							<a class="page_button" onclick="load_background()" title = "Обновить листок">Очистить</a>
+							<a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a>
+							<a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a>
+							<a class="save_button" onclick="saveCanvasAsImageFile()" style="cursor:pointer; margin-left: 10px;">
+								<img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" >
+							</a>
 					</span>
 		<!--                                                                                                       
 		  width: 415px;
@@ -190,6 +195,9 @@
 										</optgroup>
 										<optgroup label="В Линию">
 											<option value="3">Линейка №1</option>
+										</optgroup>
+										<optgroup label="Чистый Лист">
+											<option value="5">Чистый Лист №1</option>
 										</optgroup>
 									</select>
 							</div>
