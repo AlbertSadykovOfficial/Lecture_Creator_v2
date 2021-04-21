@@ -1,4 +1,7 @@
 # lecture_creator_v2
+
+![alt text](https://github.com/AlbertSadykovOfficial/Remote_Desktop_Python-RDP/blob/main/images/favicon.ico) 
+
   Нововведения:
   1) Добавлена поддержка Английского Языка 
   2) Добавлено больше символов
