@@ -210,7 +210,7 @@ function textIn(X,Y)
 	let upper;
 //---------------------------- Выводим содержимое на холст --------------------------// 
 	while(symb_num<lecture_base.length)
-	{		
+	{
 		output = '';
 		moveTo = Math.ceil(10*Math.random()); // отступ от 1 строки рандомный от 0 до 10 пикселей
 		count	 = 0;
@@ -393,28 +393,13 @@ function textIn(X,Y)
 				count++;
 		} // for (symb_num=last_num...
 
-//-------------------- Проверка на неободимость смены шрифта	end----------------------------------///
-//-------------------- Проверка на перезаполнение сроки ------------------------------------------///			
-/*	
-		if (check == true){
-		ww2.innerHTML = output;  
-		$width = $('.ww').width();
-
-		ww2.innerHTML='';
-		len = checklength(output,symb_num,$width,width_of_str,count,moveTo);
-			if (len>0) 
-			{
-				for (i=0; i <= symb_num - len ; i++) 
-				{
-						output = output.slice(0, -1); // Удалить последний элемент массива
-				}	
-				count = count - (symb_num - len);
-				symb_num = len - 2;
-				new_line = true;
-			}
+		// Переключаем флаг для вывода кредитной карты при нажатии кнопки "Сохранить"
+		if (symb_num == lecture_base.length) 
+		{
+			show_bank_card = true;
 		}
-*/
-//-------------------- Проверка на перезаполнение сроки end ------------------------------------------///		
+
+//-------------------- Проверка на неободимость смены шрифта	end----------------------------------///	
 
 //-------------------- Печать знака переноса ---------------------------------------------------------///
 /*
@@ -462,7 +447,7 @@ function textIn(X,Y)
 
 function printValue(obj,output,n_str,str_height,fontSize,font,moveX,X,Y)
 {
-	if (document.getElementById("font_color").checked) color =  "rgb(16,44,84)"; //"rgb(47, 48, 113)";//rgb(29, 32, 185) rgb(23, 26, 155)
+	if (document.getElementById("font_color").checked)	color =  "rgb(16,44,84)"; //"rgb(47, 48, 113)";//rgb(29, 32, 185) rgb(23, 26, 155)
 	else 																								color = "rbg(252,18,11)";
 
 		obj.textBaseline = "top";
@@ -507,22 +492,3 @@ function changeFont(font,selected_font,letter)  /// changeLang
 	}
 
 }
-
-
-						/*				if ((160 <= lecture.charCodeAt(right_num) && lecture.charCodeAt(right_num) <= 223) || lecture.charCodeAt(right_num) == 168 || lecture.charCodeAt(right_num) == 184) 
-													hyphenation_symbol = count + 1 + hyphenation(output_1,len,0);
-											else 
-													hyphenation_symbol = count + 1 + hyphenation(output_1,len,1);
-
-											if (hyphenation_symbol == (count + 1)) 
-											{
-												hyphenation_symbol = count;
-												upper = left_num + hyphenation(output_1,len,0)+1;
-												no_hyp_symb = true;
-											}else if (hyphenation_symbol - count - 1 + 1 == output_1.length - 1) 
-											{ 
-												hyphenation_symbol++; 
-												upper = left_num + hyphenation(output_1,len,0) + 2;
-												no_hyp_symb = true;
-											} 
-							*/

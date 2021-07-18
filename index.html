@@ -7,6 +7,7 @@
 	
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="css/hello_panel.css">
+	<link rel="stylesheet" href="css/card.css">
 
 	<link rel="stylesheet" href="css/config.css">
 	<link rel="stylesheet" href="css/font_upload.css">
@@ -150,141 +151,171 @@
 <!--//////////////////////////////////////////////////////////////////// 
 <div style="font-family: 'Roboto', sans-serif;"><div style="float: left; margin-left: 30px;">Шрифт № <input id='font_num' type='number' style='max-width: 40px;' value='1' min="1" max='5'></div>Фон № <input onchange="changeBack()" id='background_num' type='number' style='max-width: 40px;' value='1' min="1" max='3'></div>
 -->
-<main>
-		<div class="section" style="width: 40%; float: left; padding-left: 50px; margin-top: 15px;"><!-- section -->
-					
-					<textarea id='lecture_area' placeholder=""></textarea>
-					
-					<span>
-							<a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a>
-							<a class="page_button" onclick="load_background()" title = "Обновить листок">Очистить</a>
-							<a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a>
-							<a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a>
-							<a class="save_button" onclick="saveCanvasAsImageFile()" style="cursor:pointer; margin-left: 10px;">
-								<img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" >
-							</a>
-					</span>
-		<!--                                                                                                       
-		  width: 415px;
-		-->
-					<div class='params' style="background-image: url(images/settings_back.jpg); background-size: 100% 100%;">
-							
-							<div style="font-family: 'Roboto', sans-serif; height: 22px; margin:20px auto;">Настройки <a class="set_button" onclick="change_settings_mode()" title = "Проверить границы текста"> </a>
-							</div>
 
-							<div class="font_and_back">
-									<select id='font_num' style="font-size: 20px;" onchange="load_description()">
-											<optgroup label="HQ">
-												<option value="1">Шрифт 1</option>
-												<option value="2" Selected>Шрифт 2</option>
-												<option value="3">Шрифт 3</option>
-											</optgroup>
-											<optgroup label="SD">
-												<option value="4">Шрифт 4</option>
-												<option value="5">Шрифт 5</option>
-											</optgroup>
-									</select>
-							</div>
-
-							<div class="font_and_back">
-									<select id='background_num' style="font-size: 18px; " onchange="changeBack()">
-										<optgroup label="В Клетку">
-											<option value="1">Клетка №1</option>
-											<option value="2">Клетка №2</option>
-											<option value="4">Клетка №3</option>
-										</optgroup>
-										<optgroup label="В Линию">
-											<option value="3" Selected>Линейка №1</option>
-										</optgroup>
-										<optgroup label="Чистый Лист">
-											<option value="5">Чистый Лист №1</option>
-										</optgroup>
-									</select>
-							</div>
-						
-							<div id="simple_settings">
-								<div id="simple_settings_div" style="float: left">
-									<div class="form__group">
-										<input type="text" style="width: auto;" class="form__input" id="str_height_simple" placeholder="Межстрочный интервал" required="" value='42' onchange="uploadValues();" />
-										<label for="name" class="form__label">Межстрочный интервал</label>
-									</div>
-
-									<div class="form__group simple">
-										<input type="text" style="width: auto;" class="form__input" id="font_size_simple" placeholder="Размер шрифта" required="" value='20' onchange="uploadValues();" />
-										<label for="name" class="form__label">Размер шрифта</label>
-									</div>
-
-									<div style="font-family: 'Roboto', sans-serif; font-size: 16px; margin-top: 35px;">
-										<input id="font_color" value="0" type="checkbox" > Синяя ручка
-									</div>
-								</div>
-
-								<div id="simple_settings_div" style="float: right;"><img id="view_back_image"	data-height="200px"></div>
-							
-							</div>
-
-							<div id="extend_settings" data-height="300px">
-								<p style="margin-bottom: 10px">############Страница_1############</p>
-								<div class="form__group">
-									<input id="font_size_1"  type="text" class="form__input" placeholder="Размер Шрифта" required=""/> |
-									<input id="str_height_1"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
-									<input id="width_of_str_1" type="text" class="form__input" placeholder="Ширина" required=""/> -
-									<input id="height_of_str_1" type="text" class="form__input" placeholder="Высота" required=""/>
-									<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
-								</div>
-								<div class="form__group">
-									<input id="X_1" type="text" class="form__input" placeholder="X" required=""  /> -
-									<input id="Y_1" type="text" class="form__input" placeholder="Y" required=""  /> |
-									<input id="angle_1" class="form__input"  value='0' max="30" min="-30" placeholder="∡">
-									<label for="name" class="form__label">X-Y | Угол</label>
-								</div><!--                                                                                                       
-
-					-->
-								<div style="color: rgb(190,199,197); margin-top: 25px;">
-									<p style="margin-bottom: 10px">############Страница_2############</p>
-									<div class="form__group">
-										<input id="font_size_2" type="text" class="form__input" placeholder="Размер Шрифта" required=""  /> |
-										<input id="str_height_2"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
-										<input id="width_of_str_2" type="text" class="form__input" placeholder="Ширина" required=""/> -
-										<input id="height_of_str_2" type="text" class="form__input" placeholder="Высота" required=""/>
-										<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
-									</div>
-									<div class="form__group">
-										<input id="X_2" type="text" class="form__input" placeholder="X" required=""  /> -
-										<input id="Y_2" type="text" class="form__input" placeholder="Y" required=""  /> |
-										<input id="angle_2" class="form__input" value='0' max="30" min="-30" placeholder="∡">
-										<label for="name" class="form__label">X-Y | Угол</label>
-									</div>
+		<!-- Банковская карта  -->
+		<section id='card' class='card_section'>
+					<div class="credit-card-wrap"> 
+						<div class='credit-text-element'>
+							Привет, поддержи проект, курс печеньки на сегодня <i id='rubles'>50</i> руб &#127850;, <i>№</i> 💳 указан ниже ^_^
+						</div>
+						<div class="mk-icon-world-map"></div>
+						<div class="credit-card-inner">
+							<div class="header">
+								<div class="credit-logo">
+									<div class="shape"><span class="txt">PB</span></div> <span class="text">Tinkoff Bank</span>
 								</div>
 							</div>
-
-							<div style='height: 30px; position: relative; z-index: 1; cursor: pointer;' onclick="change_settings_mode()"></div>
+							<div class="mk-icon-sim"></div>
+							<div class="credit-font credit-card-number" data-text="5536">5536 9138 1680 0631</div>
+							<div class="footer">
+								<div class="clearfix">
+									<div class="pull-left">
+										<div class="credit-card-date"><span class="title">Expires End</span><span class="credit-font">01/23</span></div>
+										<div class="credit-font credit-author">ALBERT SADYKOV</div>
+									</div>
+									<div class="pull-right"><div class="mk-icon-visa"></div></div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<!-- Я не ЭБУ почему спан, помещенный в pre, так влияет на ширину.
-							!!!! 	НЕ УДАЛЯТЬ (pre)   !!! - будет наложение букв
+		</section>
+
+		<main>
+				<div class="section" style="width: 40%; float: left; padding-left: 50px; margin-top: 15px;"><!-- section -->
+							
+							<textarea id='lecture_area' placeholder=""></textarea>
+							
+							<span>
+									<a class="page_button" onclick="prev()" title = "Предидущая страница"><< Назад</a>
+									<a class="page_button" onclick="load_background()" title = "Обновить листок">Очистить</a>
+									<a class="page_button" onclick="next()" title = "Следующая страница">Вперед >></a>
+									<a class="view_set_button" onclick="view_settings()" title = "Проверить границы текста">#</a>
+									<a class="save_button" onclick="saveCanvasAsImageFile()" style="cursor:pointer; margin-left: 10px;">
+										<img title="СОХРАНИТЬ СТРАНИЦУ" src="images/save.png" >
+									</a>
+							</span>
+				<!--                                                                                                       
+				  width: 415px;
+				-->
+							<div class='params' style="background-image: url(images/settings_back.jpg); background-size: 100% 100%;">
+									
+									<div style="font-family: 'Roboto', sans-serif; height: 22px; margin:20px auto;">Настройки <a class="set_button" onclick="change_settings_mode()" title = "Проверить границы текста"> </a>
+									</div>
+
+									<div class="font_and_back">
+											<select id='font_num' style="font-size: 20px;" onchange="load_description()">
+													<optgroup label="HQ">
+														<option value="1">Шрифт 1</option>
+														<option value="2" Selected>Шрифт 2</option>
+														<option value="3">Шрифт 3</option>
+													</optgroup>
+													<optgroup label="SD">
+														<option value="4">Шрифт 4</option>
+														<option value="5">Шрифт 5</option>
+													</optgroup>
+											</select>
+									</div>
+
+									<div class="font_and_back">
+											<select id='background_num' style="font-size: 18px; " onchange="changeBack()">
+												<optgroup label="В Клетку">
+													<option value="1">Клетка №1</option>
+													<option value="2">Клетка №2</option>
+													<option value="4">Клетка №3</option>
+												</optgroup>
+												<optgroup label="В Линию">
+													<option value="3" Selected>Линейка №1</option>
+												</optgroup>
+												<optgroup label="Чистый Лист">
+													<option value="5">Чистый Лист №1</option>
+												</optgroup>
+											</select>
+									</div>
+								
+									<div id="simple_settings">
+										<div id="simple_settings_div" style="float: left">
+											<div class="form__group">
+												<input type="text" style="width: auto;" class="form__input" id="str_height_simple" placeholder="Межстрочный интервал" required="" value='42' onchange="uploadValues();" />
+												<label for="name" class="form__label">Межстрочный интервал</label>
+											</div>
+
+											<div class="form__group simple">
+												<input type="text" style="width: auto;" class="form__input" id="font_size_simple" placeholder="Размер шрифта" required="" value='20' onchange="uploadValues();" />
+												<label for="name" class="form__label">Размер шрифта</label>
+											</div>
+
+											<div style="font-family: 'Roboto', sans-serif; font-size: 16px; margin-top: 35px;">
+												<input id="font_color" value="0" type="checkbox" > Синяя ручка
+											</div>
+										</div>
+
+										<div id="simple_settings_div" style="float: right;"><img id="view_back_image"	data-height="200px"></div>
+									
+									</div>
+
+									<div id="extend_settings" data-height="300px">
+										<p style="margin-bottom: 10px">############Страница_1############</p>
+										<div class="form__group">
+											<input id="font_size_1"  type="text" class="form__input" placeholder="Размер Шрифта" required=""/> |
+											<input id="str_height_1"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
+											<input id="width_of_str_1" type="text" class="form__input" placeholder="Ширина" required=""/> -
+											<input id="height_of_str_1" type="text" class="form__input" placeholder="Высота" required=""/>
+											<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
+										</div>
+										<div class="form__group">
+											<input id="X_1" type="text" class="form__input" placeholder="X" required=""  /> -
+											<input id="Y_1" type="text" class="form__input" placeholder="Y" required=""  /> |
+											<input id="angle_1" class="form__input"  value='0' max="30" min="-30" placeholder="∡">
+											<label for="name" class="form__label">X-Y | Угол</label>
+										</div><!--                                                                                                       
+
 							-->
-					<pre><span class="ww"></span></pre> 
-					
-					
-		</div> <!-- section -->
+										<div style="color: rgb(190,199,197); margin-top: 25px;">
+											<p style="margin-bottom: 10px">############Страница_2############</p>
+											<div class="form__group">
+												<input id="font_size_2" type="text" class="form__input" placeholder="Размер Шрифта" required=""  /> |
+												<input id="str_height_2"  type="text" class="form__input" placeholder="Межстрочный интервал" required=""/> |
+												<input id="width_of_str_2" type="text" class="form__input" placeholder="Ширина" required=""/> -
+												<input id="height_of_str_2" type="text" class="form__input" placeholder="Высота" required=""/>
+												<label for="name" class="form__label">Размер Шрифта | Межстрочный интервал | Ширина - Высота контейнера</label>
+											</div>
+											<div class="form__group">
+												<input id="X_2" type="text" class="form__input" placeholder="X" required=""  /> -
+												<input id="Y_2" type="text" class="form__input" placeholder="Y" required=""  /> |
+												<input id="angle_2" class="form__input" value='0' max="30" min="-30" placeholder="∡">
+												<label for="name" class="form__label">X-Y | Угол</label>
+											</div>
+										</div>
+									</div>
 
-		<div class="section" style="cursor: crosshair; width: 50%; float: left; margin-top: 15px;" onclick="write_into_position()" >
+									<div style='height: 30px; position: relative; z-index: 1; cursor: pointer;' onclick="change_settings_mode()"></div>
+							</div>
+							<!-- Я не ЭБУ почему спан, помещенный в pre, так влияет на ширину.
+									!!!! 	НЕ УДАЛЯТЬ (pre)   !!! - будет наложение букв
+									-->
+							<pre><span class="ww"></span></pre> 
+							
+							
+				</div> <!-- section -->
+
+				<div class="section" style="cursor: crosshair; width: 50%; float: left; margin-top: 15px;" onclick="write_into_position()" >
+						
+						<canvas id="myCanvas" crossorigin="anonymous" onmouseover="hide_num_of_page()">
+						</canvas>
 				
-				<canvas id="myCanvas" crossorigin="anonymous" onmouseover="hide_num_of_page()">
-				</canvas>
-		
-		</div> 
-</main>
+				</div> 
+		</main>
 
-<footer>
+		<footer>
 
-	<div class="footer-cta">Нашел БАГ? ОШИБКУ? Напиши ПО-<img style="margin-top:-30px; height:50px;" src="images/bratz.png">КИ</div> 
-	<a href="https://vk.com/id267162357" class="footer-button" style="background: url(images/wolf.jpg); background-size: 100%;" target="_blank">Написать</a>
+			<div class="footer-cta">Нашел БАГ? ОШИБКУ? Напиши ПО-<img style="margin-top:-30px; height:50px;" src="images/bratz.png">КИ</div> 
+			<a href="https://vk.com/id267162357" class="footer-button" style="background: url(images/wolf.jpg); background-size: 100%;" target="_blank">Написать</a>
 
-</footer>
+		</footer>
 
 <!--	<script src='js/another/jquery-1.11.1.min.js'></script> 
--->	 	
+-->	
+		<script src="js/card.js"></script>
 	 	<script src='js/page.js'></script> 
 	 	<script src="js/set_page_values.js"></script>
 	 	<script src="js/settings_mode.js"></script>
